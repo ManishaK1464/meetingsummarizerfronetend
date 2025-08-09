@@ -6,8 +6,8 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // Use environment variable for backend URL or fallback to empty string
-  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
+  // Remove trailing slash from backend URL if present
+  const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL || "").replace(/\/$/, "");
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -67,6 +67,7 @@ function App() {
             color: "#eee",
             resize: "vertical",
             boxSizing: "border-box",
+
             whiteSpace: "pre-wrap",
             overflowWrap: "break-word",
             wordBreak: "break-word",
