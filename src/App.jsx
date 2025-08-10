@@ -10,7 +10,7 @@ function InlineEditableAnalysis({ text, onChange }) {
   }, [text]);
 
   useEffect(() => {
-    if (isEditing) {
+    if (isEditing && textareaRef.current) {
       textareaRef.current.focus();
     }
   }, [isEditing]);
@@ -78,6 +78,7 @@ function InlineEditableAnalysis({ text, onChange }) {
 
       {/* Edit icon positioned top-right */}
       <button
+        type="button"
         onClick={() => setIsEditing(true)}
         title="Edit analysis"
         aria-label="Edit analysis"
@@ -103,3 +104,5 @@ function InlineEditableAnalysis({ text, onChange }) {
     </div>
   );
 }
+
+export default InlineEditableAnalysis;
