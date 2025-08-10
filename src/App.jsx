@@ -25,7 +25,7 @@ function App() {
         body: JSON.stringify({
           datasheet_text: datasheetText,
           log_text: logText || null,
-          query: query || null
+          query: query || null,
         }),
       });
 
@@ -43,10 +43,9 @@ function App() {
   }
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+    <div style={{ maxWidth: 1000, margin: "0 auto", padding: 20, color: "#eee", fontFamily: "system-ui" }}>
       <h1>AI Device Debug & Command Assistant</h1>
       <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-        
         <textarea
           rows={6}
           placeholder="Paste relevant datasheet content here..."
@@ -55,7 +54,6 @@ function App() {
           required
           style={inputStyle}
         />
-
         <textarea
           rows={6}
           placeholder="Paste device logs here (optional)..."
@@ -63,7 +61,6 @@ function App() {
           onChange={(e) => setLogText(e.target.value)}
           style={inputStyle}
         />
-
         <input
           type="text"
           placeholder="Optional query (e.g., Set channel to 193.5 THz)"
@@ -71,31 +68,15 @@ function App() {
           onChange={(e) => setQuery(e.target.value)}
           style={inputStyle}
         />
-
-        <button
-          type="submit"
-          disabled={loading}
-          style={{
-            padding: "12px 0",
-            fontSize: 18,
-            borderRadius: 6,
-            border: "none",
-            backgroundColor: loading ? "#555" : "#0055ff",
-            color: "white",
-            cursor: loading ? "not-allowed" : "pointer",
-            transition: "background-color 0.3s ease",
-          }}
-        >
+        <button type="submit" disabled={loading} style={buttonStyle}>
           {loading ? "Analyzing..." : "Analyze"}
         </button>
       </form>
-
       {error && <p style={{ color: "red", fontWeight: "bold" }}>Error: {error}</p>}
-
       {analysis && (
         <div style={outputContainer}>
-          <h3 style={{ marginTop: 0, marginBottom: 12 }}>Analysis & Suggestions</h3>
-          <pre style={preStyle}>{analysis}</pre>
+          <h3>Analysis & Suggestions</h3>
+          <pre style={{ whiteSpace: "pre-wrap" }}>{analysis}</pre>
         </div>
       )}
     </div>
@@ -117,28 +98,24 @@ const inputStyle = {
   wordBreak: "break-word",
 };
 
+const buttonStyle = {
+  padding: "12px 0",
+  fontSize: 18,
+  borderRadius: 6,
+  border: "none",
+  backgroundColor: "#0055ff",
+  color: "white",
+  cursor: "pointer",
+  transition: "background-color 0.3s ease",
+};
+
 const outputContainer = {
   backgroundColor: "#1e1e1e",
   color: "#eee",
   padding: 20,
   borderRadius: 8,
   boxShadow: "0 2px 8px rgba(0,0,0,0.7)",
-  whiteSpace: "pre-wrap",
-  overflowWrap: "break-word",
-  wordBreak: "break-word",
-  fontSize: 16,
-  lineHeight: 1.5,
-  maxWidth: "100%",
-  boxSizing: "border-box",
-};
-
-const preStyle = {
-  margin: 0,
-  whiteSpace: "pre-wrap",
-  overflowWrap: "break-word",
-  wordBreak: "break-word",
-  maxWidth: "100%",
-  boxSizing: "border-box",
+  marginTop: 20,
 };
 
 export default App;
