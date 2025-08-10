@@ -8,6 +8,7 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  // Remove trailing slash from env var if present
   const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL || "").replace(/\/$/, "");
 
   async function handleSubmit(e) {
@@ -16,17 +17,20 @@ function App() {
     setError(null);
     setAnalysis("");
 
+    const payload = {
+      datasheet_text: datasheetText,
+      log_text: logText || null,
+      query: query || null,
+    };
+    console.log("Sending request:", payload);
+
     try {
       const response = await fetch(`${API_BASE_URL}/analyze_device`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          datasheet_text: datasheetText,
-          log_text: logText || null,
-          query: query || null,
-        }),
+        body: JSON.stringify(payload),
       });
 
       if (!response.ok) {
