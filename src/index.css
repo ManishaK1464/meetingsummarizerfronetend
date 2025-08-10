@@ -1,80 +1,58 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+/* --- Additional Styles for Log & Editable Output --- */
 
-  color-scheme: dark;
-  color: rgba(238, 238, 238, 0.87);
-  background-color: #121212;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  min-width: 320px;
-  min-height: 100vh;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  background-color: #121212;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-  color: #eee;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #0055ff;
-  color: white;
-  cursor: pointer;
-  transition: border-color 0.25s, background-color 0.3s;
-}
-button:hover {
-  border-color: #646cff;
-  background-color: #0040cc;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-/* Container for React app */
+/* Wider layout for technical/log data */
 #root {
-  width: 100%;
-  max-width: 700px;
-  margin: 0 20px;
-  padding: 20px;
-  box-sizing: border-box;
-  background: #121212;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
-  color: #eee;
-  text-align: left;
+  max-width: 1000px; /* allow more horizontal space */
+}
 
-  /* wrap long words if any */
-  word-wrap: break-word;
-  overflow-wrap: break-word;
+/* Scrollable log or code display */
+.log-viewer {
+  background-color: #1e1e1e;
+  color: #dcdcdc;
+  padding: 1rem;
+  border-radius: 8px;
+  max-height: 300px;
+  overflow-y: auto;
+  font-family: monospace;
+  font-size: 0.9rem;
+  border: 1px solid #333;
+}
+
+/* Editable AI output */
+.editable-output {
+  background-color: #181818;
+  border: 1px solid #444;
+  padding: 1rem;
+  border-radius: 8px;
+  min-height: 120px;
+  cursor: text;
+  white-space: pre-wrap;
+}
+.editable-output:focus {
+  outline: none;
+  border-color: #646cff;
+  box-shadow: 0 0 0 2px rgba(100, 108, 255, 0.2);
+}
+
+/* Section headers */
+.section-header {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 1.5rem 0 0.5rem;
+  color: #bbb;
+}
+
+/* Action buttons for commands */
+.command-button {
+  background-color: #333;
+  border: 1px solid #555;
+  color: #eee;
+  font-size: 0.9rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  margin-right: 0.5rem;
+  cursor: pointer;
+}
+.command-button:hover {
+  background-color: #444;
 }
